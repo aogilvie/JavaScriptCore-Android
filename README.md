@@ -2,7 +2,7 @@
 
 ## About
 
-**JavaScript Source Marker:** Cloned from http://android.googlesource.com/ master branch at Jan 29 2012.
+**JavaScriptCore Source Marker:** Cloned from http://android.googlesource.com/ master branch at Jan 29 2012.
 
 ## License
 
