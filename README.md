@@ -11,7 +11,7 @@ Please be ware that JavaScriptCore is open source under LGPL license!
 ## Compiling
 
 #### iOS
-Just click 'jni/Source/JavaScriptCore/JavaScriptCore.xcodeproj' to compile.
+Just open `jni/Source/JavaScriptCore/JavaScriptCore.xcodeproj` and compile.
 
 #### Android
 
