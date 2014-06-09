@@ -58,7 +58,6 @@ LOCAL_C_INCLUDES := $(LOCAL_C_INCLUDES) \
 	$(JAVASCRIPTCORE_PATH)/disassembler \
 	$(JAVASCRIPTCORE_PATH)/heap \
 	$(JAVASCRIPTCORE_PATH)/llint \
-	$(JAVASCRIPTCORE_PATH)/offlineasm \
 	$(JAVASCRIPTCORE_PATH)/wtf \
 	$(JAVASCRIPTCORE_PATH)/wtf/unicode \
 	$(JAVASCRIPTCORE_PATH)/wtf/unicode/icu \
@@ -70,7 +69,7 @@ LOCAL_C_INCLUDES := $(LOCAL_C_INCLUDES) \
 	$(JAVASCRIPTCORE_PATH)/interpreter \
 	$(JAVASCRIPTCORE_PATH)/jit \
 	$(JAVASCRIPTCORE_PATH)/profiler \
-	$(JAVASCRIPTCORE_PATH)/runtime 
+	$(JAVASCRIPTCORE_PATH)/runtime
 	
 # Now build libjs as a static library.
 

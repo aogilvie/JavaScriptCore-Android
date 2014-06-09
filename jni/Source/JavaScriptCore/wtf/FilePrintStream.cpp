@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2008 Apple Computer, Inc.  All rights reserved.
+ * Copyright (C) 2012 Apple Inc. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -10,10 +10,10 @@
  *    notice, this list of conditions and the following disclaimer in the
  *    documentation and/or other materials provided with the distribution.
  *
- * THIS SOFTWARE IS PROVIDED BY APPLE COMPUTER, INC. ``AS IS'' AND ANY
+ * THIS SOFTWARE IS PROVIDED BY APPLE INC. ``AS IS'' AND ANY
  * EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
  * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
- * PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL APPLE COMPUTER, INC. OR
+ * PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL APPLE INC. OR
  * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
  * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
  * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
@@ -23,30 +23,33 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
  */
 
-#ifndef JSBasePrivate_h
-#define JSBasePrivate_h
+#include "config.h"
+#include "FilePrintStream.h"
 
-#include <JavaScriptCore/API/JSBase.h>
-#include <JavaScriptCore/API/WebKitAvailability.h>
+namespace WTF {
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-/*!
-@function
-@abstract Reports an object's non-GC memory payload to the garbage collector.
-@param ctx The execution context to use.
-@param size The payload's size, in bytes.
-@discussion Use this function to notify the garbage collector that a GC object
-owns a large non-GC memory region. Calling this function will encourage the
-garbage collector to collect soon, hoping to reclaim that large non-GC memory
-region.
-*/
-JS_EXPORT void JSReportExtraMemoryCost(JSContextRef ctx, size_t size) AVAILABLE_IN_WEBKIT_VERSION_4_0;
-
-#ifdef __cplusplus
+FilePrintStream::FilePrintStream(FILE* file, AdoptionMode adoptionMode)
+    : m_file(file)
+    , m_adoptionMode(adoptionMode)
+{
 }
-#endif
 
-#endif /* JSBasePrivate_h */
+FilePrintStream::~FilePrintStream()
+{
+    if (m_adoptionMode == Borrow)
+        return;
+    fclose(m_file);
+}
+
+void FilePrintStream::vprintf(const char* format, va_list argList)
+{
+    vfprintf(m_file, format, argList);
+}
+
+void FilePrintStream::flush()
+{
+    fflush(m_file);
+}
+
+} // namespace WTF
+
