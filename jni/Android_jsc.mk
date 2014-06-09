@@ -54,11 +54,15 @@ LOCAL_C_INCLUDES := $(LOCAL_C_INCLUDES) \
 	$(JAVASCRIPTCORE_PATH)/bytecode \
 	$(JAVASCRIPTCORE_PATH)/bytecompiler \
 	$(JAVASCRIPTCORE_PATH)/debugger \
-	$(JAVASCRIPTCORE_PATH)/collector/handles \
+	$(JAVASCRIPTCORE_PATH)/dfg \
+	$(JAVASCRIPTCORE_PATH)/disassembler \
 	$(JAVASCRIPTCORE_PATH)/heap \
+	$(JAVASCRIPTCORE_PATH)/llint \
+	$(JAVASCRIPTCORE_PATH)/offlineasm \
 	$(JAVASCRIPTCORE_PATH)/wtf \
 	$(JAVASCRIPTCORE_PATH)/wtf/unicode \
 	$(JAVASCRIPTCORE_PATH)/wtf/unicode/icu \
+	$(JAVASCRIPTCORE_PATH)/yarr \
 	$(BASE_PATH)/../platform_external_icu4c/common \
 	$(BASE_PATH)/../platform_external_icu4c/i18n \
 	$(BASE_PATH)/../corefoundation-lite-android \
